@@ -31,6 +31,14 @@ ASP.Net core app to automatically generate Amazon product reviews
    - The environment tag gets you swagger, something we don't want in QA and PROD
 1. Navigate to http://localhost:8081/swagger/index.html
 
+# Deployed Applications
+
+1. WebApi deployed to Azure App Service (no Docker)
+   - [Link](https://ghake-review-api.azurewebsites.net/swagger/index.html)
+1. WebApi deployed to Azure App Service (Docker, with Azure Container Registry)
+   - [Link](https://ghake-docker-review-api.azurewebsites.net/swagger/index.html)
+   - It's impossible to prove just with a link, so I can walk through the process
+
 # Deliverables
 
 ## Core
@@ -116,3 +124,16 @@ The goal is to have a CI/CD pipeline do this for me, but baby steps
    - Open api folder in it's one code instance
 
 ### Manually publishing to Azure Container Registry, then to Azure App Service
+
+Using the following walkthrough: [Link](https://code.visualstudio.com/docs/containers/app-service)
+
+1. Create application image
+   ```bash
+   docker build -t review-api
+   ```
+1. Push image to container registry
+   - Manually create a container registry in docker
+   - Need to have the docker and azure extensions installed
+   - Right click on tagged image, push
+1. In Docker Explorer, navigate to image under Registries
+   - Right click on tag, `Deploy to Azure App Service`
