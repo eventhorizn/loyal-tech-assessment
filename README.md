@@ -92,3 +92,27 @@ ASP.Net core app to automatically generate Amazon product reviews
    ```
    docker rm review-api
    ```
+
+## Azure
+
+The goal is to have a CI/CD pipeline do this for me, but baby steps
+
+### Manually publishing to Azure App Service
+
+1. [Quickstart](https://docs.microsoft.com/en-us/azure/app-service/quickstart-dotnetcore?tabs=net60&pivots=development-environment-vs)
+1. I use the `Azure Tools` extension in vscode
+1. Need to create a:
+   - Resource Group
+   - Hosting Plan
+   - App Service
+   - App
+1. BIG GOTCHA
+   - vscode's implemenetation leaves a bit to be desired w/ the manual approach
+   - Need to manually publish first `dotnet publish -c Release`
+   - In the .vscode folder, create a `settings.json` file
+     - "appService.deploySubpath": "bin\\Release\\net6.0\\publish"
+   - This will mirror a `zip deploy` (Visual Studio was much smoother about this)
+1. Since I have multiple apps in my repo, I need to open code on the app I'm deploying
+   - Open api folder in it's one code instance
+
+### Manually publishing to Azure Container Registry, then to Azure App Service

@@ -1,0 +1,3 @@
+{
+	"appService.deploySubpath": "bin\\Release\\net6.0\\publish"
+}
