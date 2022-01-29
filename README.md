@@ -11,7 +11,7 @@ ASP.Net core app to automatically generate Amazon product reviews
 
 ## API Local
 
-1. Navigate to `api` folder in the terminal
+1. Navigate to the `api` folder in the terminal
 1. Run the below command in the terminal
    ```bash
    dotnet watch run
@@ -30,6 +30,28 @@ ASP.Net core app to automatically generate Amazon product reviews
    ```
    - The environment tag gets you swagger, something we don't want in QA and PROD
 1. Navigate to http://localhost:8081/swagger/index.html
+
+## UI Local
+
+1. Navigate to the `ui` folder in the terminal
+1. Run the below command in the terminal
+   ```bash
+   dotnet watch run
+   ```
+1. This will auto open to a blazor app that is hitting the api
+   - Need to work on this, hitting it locally? hitting deployed?
+
+## UI Docker Local
+
+1. Navigate to the `ui` folder in the terminal
+1. Run the below commands
+   ```bash
+   docker build -t review-ui .
+   ```
+   ```bash
+   docker run -d -p 8082:5001 --name review-ui  review-ui
+   ```
+1. Navigate to http://localhost:8082
 
 # Deployed Applications
 
@@ -89,14 +111,18 @@ ASP.Net core app to automatically generate Amazon product reviews
 
 1. Creating new project
    ```bash
-   dotnet new blazorwasm
+   dotnet new blazorserver
    ```
 1. Running locally
    ```bash
    dotnet watch run
    ```
+1. Blazor Dark Mode (I have a problem)
+   - [Link](https://bootswatch.com/darkly/)
 
 ## Docker
+
+### API
 
 1. I used the docker extension in vs code along w/ terminal commands
    - [Walkthrough](https://code.visualstudio.com/docs/containers/quickstart-aspnet-core)
@@ -106,12 +132,29 @@ ASP.Net core app to automatically generate Amazon product reviews
    ```
 1. Docker run
    ```bash
-   docker run -d -p 8081:5000 -e ASPNETCORE_ENVIRONMENT=Development -e --name review-api  review-api
+   docker run -d -p 8081:5000 -e ASPNETCORE_ENVIRONMENT=Development  --name review-api  review-api
    ```
    - The environment tag is so I can get Swagger
 1. Docker remove
    ```
    docker rm review-api
+   ```
+
+### UI
+
+1. I used the docker extension in vs code along w/ terminal commands
+   - [Walkthrough](https://code.visualstudio.com/docs/containers/quickstart-aspnet-core)
+1. Docker Build
+   ```bash
+   docker build -t review-ui .
+   ```
+1. Docker run
+   ```bash
+   docker run -d -p 8082:5001--name review-ui  review-ui
+   ```
+1. Docker remove
+   ```
+   docker rm review-ui
    ```
 
 ## Azure
