@@ -62,6 +62,10 @@ ASP.Net core app to automatically generate Amazon product reviews
    - [Link](https://ghake-docker-review-api.azurewebsites.net/swagger/index.html)
    - It's impossible to prove just with a link, so I can walk through the process
    - https://ghake-docker-review-api.azurewebsites.net/api/generate
+1. Blazor UI deployed to Azure App Service (no Docker)
+   - [Link](https://ghake-review-ui.azurewebsites.net/)
+1. Blazor UI deployed to Azure App Service (Docker, with Azure Contiainer Registry)
+   - [Link](https://ghake-docker-review-ui.azurewebsites.net/)
 
 # Deliverables
 
@@ -193,3 +197,7 @@ Using the following walkthrough: [Link](https://code.visualstudio.com/docs/conta
    - Right click on tagged image, push
 1. In Docker Explorer, navigate to image under Registries
    - Right click on tag, `Deploy to Azure App Service`
+1. Subsequent updates follow this path:
+   - Make updates locally
+   - Push updates to registry
+   - Restart app (which will pull most recent image)
