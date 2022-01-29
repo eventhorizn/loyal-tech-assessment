@@ -35,9 +35,11 @@ ASP.Net core app to automatically generate Amazon product reviews
 
 1. WebApi deployed to Azure App Service (no Docker)
    - [Link](https://ghake-review-api.azurewebsites.net/swagger/index.html)
+   - https://ghake-review-api.azurewebsites.net/api/generate
 1. WebApi deployed to Azure App Service (Docker, with Azure Container Registry)
    - [Link](https://ghake-docker-review-api.azurewebsites.net/swagger/index.html)
    - It's impossible to prove just with a link, so I can walk through the process
+   - https://ghake-docker-review-api.azurewebsites.net/api/generate
 
 # Deliverables
 
@@ -82,6 +84,17 @@ ASP.Net core app to automatically generate Amazon product reviews
 1. Swagger [Customization](https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-6.0&tabs=visual-studio#customize-and-extend)
    - Added [dark mode](https://dev.to/amoenus/turn-swagger-theme-to-the-dark-mode-4l5f)
    - Remove `app.UseStaticFiles();` from the `Program.cs` file to reomve the custom styling
+
+## Blazor Front End
+
+1. Creating new project
+   ```bash
+   dotnet new blazorwasm
+   ```
+1. Running locally
+   ```bash
+   dotnet watch run
+   ```
 
 ## Docker
 
