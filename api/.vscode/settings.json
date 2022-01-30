@@ -1,3 +1,4 @@
 {
-	"appService.deploySubpath": "bin\\Release\\net6.0\\publish"
+	"appService.deploySubpath": "bin\\Release\\net6.0\\publish",
+	"appService.defaultWebAppToDeploy": "/subscriptions/0e268c30-9c44-41d3-bb5f-3a9fa77fb9b2/resourceGroups/loyal-assessment-ghake/providers/Microsoft.Web/sites/ghake-review-api"
 }
