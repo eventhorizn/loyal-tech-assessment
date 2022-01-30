@@ -17,6 +17,9 @@ ASP.Net core app to automatically generate Amazon product reviews
    dotnet watch run
    ```
 1. This will auto open to swagger
+1. You can also run from VS code
+   - From the root, I've created 2 launch configurations
+   - Simply select the API profile and hit f5
 
 ## API Docker Local
 
@@ -38,8 +41,15 @@ ASP.Net core app to automatically generate Amazon product reviews
    ```bash
    dotnet watch run
    ```
+1. From root folder
+   ```bash
+   dotnet watch run --project ui/review-api.csproj
+   ```
 1. This will auto open to a blazor app that is hitting the api
    - Need to work on this, hitting it locally? hitting deployed?
+1. You can also run from VS code
+   - From the root, I've created 2 launch configurations
+   - Simply select the UI profile and hit f5
 
 ## UI Docker Local
 
@@ -96,12 +106,21 @@ ASP.Net core app to automatically generate Amazon product reviews
 
 # Setup
 
+1. Set up sln in base folder
+   ```bash
+   dotnet new sln
+   ```
+
 ## API
 
 1. Using .net 6 [minimal api](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-6.0)
 1. Creating new project
    ```bash
    dotnet new webapi -minimal
+   ```
+1. Add to Solution file
+   ```bash
+   dotnet sln add api/review-api.csproj
    ```
 1. Running locally
    ```bash
@@ -116,6 +135,10 @@ ASP.Net core app to automatically generate Amazon product reviews
 1. Creating new project
    ```bash
    dotnet new blazorserver
+   ```
+1. Add to Solution file
+   ```bash
+   dotnet sln add ui/review-ui.csproj
    ```
 1. Running locally
    ```bash
