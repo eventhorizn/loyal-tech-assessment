@@ -158,8 +158,6 @@ ASP.Net core app to automatically generate Amazon product reviews
    ```bash
    dotnet watch run
    ```
-1. Blazor Dark Mode (I have a problem)
-   - [Link](https://bootswatch.com/darkly/)
 
 ## Test
 
@@ -192,25 +190,24 @@ ASP.Net core app to automatically generate Amazon product reviews
 
 ## Docker
 
-Needs another run through
-
 ### API
 
 1. I used the docker extension in vs code along w/ terminal commands
    - [Walkthrough](https://code.visualstudio.com/docs/containers/quickstart-aspnet-core)
 1. Docker Build
    ```bash
-   docker build -t review-api .
+   docker build -t review-api -f Dockerfile.local .
    ```
 1. Docker run
    ```bash
-   docker run -d -p 5000:5000 -e ASPNETCORE_ENVIRONMENT=Development  --name review-api  review-api
+   docker run -d -p 5000:80 -e ASPNETCORE_ENVIRONMENT=Development --name review-api  review-api
    ```
    - The environment tag is so I can get Swagger
 1. Docker remove
    ```
    docker rm review-api
    ```
+1. Navigate to http://localhost:5000/swagger/index.html
 
 ### UI
 
@@ -218,16 +215,17 @@ Needs another run through
    - [Walkthrough](https://code.visualstudio.com/docs/containers/quickstart-aspnet-core)
 1. Docker Build
    ```bash
-   docker build -t review-ui .
+   docker build -t review-ui -f Dockerfile.local .
    ```
 1. Docker run
    ```bash
-   docker run -d -p 5001:5001 -e ASPNETCORE_ENVIRONMENT=Development --name review-ui  review-ui
+   docker run -d -p 5001:80 -e ASPNETCORE_ENVIRONMENT=DockerLocal --name review-ui --link review-api:review-api  review-ui
    ```
 1. Docker remove
    ```
    docker rm review-ui
    ```
+1. Navigate to http://localhost:5001
 
 ## Azure
 
@@ -257,7 +255,10 @@ Using the following walkthrough: [Link](https://code.visualstudio.com/docs/conta
 
 1. Create application image
    ```bash
-   docker build -t review-api
+   docker build -t review-api -f Dockerfile.local .
+   ```
+   ```
+   docker build -t review-ui -f Dockerfile.local .
    ```
 1. Push image to container registry
    - Manually create a container registry in docker

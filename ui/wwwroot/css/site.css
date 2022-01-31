@@ -3,10 +3,20 @@
 html,
 body {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	background-color: rgb(56, 52, 52);
+}
+
+::-webkit-scrollbar {
+	width: 1rem;
+	background: transparent; /* make scrollbar transparent */
 }
 
 h1:focus {
 	outline: none;
+}
+
+p {
+	color: white;
 }
 
 a,
@@ -69,4 +79,12 @@ a,
 
 .review-container {
 	margin-top: 1rem;
+	height: 500px;
+	overflow-y: scroll;
+}
+
+li {
+	background-color: rgb(24, 23, 23) !important;
+	color: rgb(224, 216, 216) !important;
+	border-color: rgb(224, 216, 216) !important;
 }
