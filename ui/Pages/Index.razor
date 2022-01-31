@@ -1,7 +1,54 @@
 ﻿@page "/"
+@using System.Text.Json
+@inject IHttpClientFactory ClientFactory
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<button type="button" class="btn btn-primary" 
+        onclick="@(() => GenerateReview())">
+    Generate Review
+</button>
 
-Welcome to your new app.
+@if (GetReviewError)
+{
+    <p>Unable to Generate a Review. Please try again later</p>
+}
+else
+{
+    <ul class="list-group review-container">
+        @foreach (var review in Reviews)
+        {
+            <li class="list-group-item">
+                @review.ReviewText : @review.Rating
+            </li>   
+        }
+    </ul>
+}
+
+@code {
+    private IList<RandomReview> Reviews {get; set;} = new List<RandomReview>();
+    private bool GetReviewError {get; set;}
+
+    private async Task GenerateReview()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get,
+            "https://localhost:7052/api/generate");
+        var client = ClientFactory.CreateClient();
+        var response = await client.SendAsync(request);
+
+        if (response.IsSuccessStatusCode)
+        {
+            using var responseStream = await 
+                response.Content.ReadAsStreamAsync();
+            var review = await 
+                JsonSerializer.DeserializeAsync<RandomReview>(responseStream);
+
+            if (review is not null)
+                Reviews.Add(review);
+        }
+        else 
+        {
+            GetReviewError = true;
+        }
+    }
+}
