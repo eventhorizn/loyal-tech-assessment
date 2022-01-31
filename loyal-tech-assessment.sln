@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "review-api", "api\review-ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ui", "ui\ui.csproj", "{CBDEFF8F-182C-4E42-A9CF-2F23675082E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "review-generator-test", "review-generator-test\review-generator-test.csproj", "{6E62EA34-07F9-4E30-AABA-EE8AD0D1468E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{CBDEFF8F-182C-4E42-A9CF-2F23675082E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBDEFF8F-182C-4E42-A9CF-2F23675082E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBDEFF8F-182C-4E42-A9CF-2F23675082E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E62EA34-07F9-4E30-AABA-EE8AD0D1468E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E62EA34-07F9-4E30-AABA-EE8AD0D1468E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E62EA34-07F9-4E30-AABA-EE8AD0D1468E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E62EA34-07F9-4E30-AABA-EE8AD0D1468E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

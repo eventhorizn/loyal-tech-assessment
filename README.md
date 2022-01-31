@@ -110,6 +110,10 @@ ASP.Net core app to automatically generate Amazon product reviews
    ```bash
    dotnet new sln
    ```
+1. Build solution
+   ```bash
+   dotnet build
+   ```
 
 ## API
 
@@ -146,6 +150,21 @@ ASP.Net core app to automatically generate Amazon product reviews
    ```
 1. Blazor Dark Mode (I have a problem)
    - [Link](https://bootswatch.com/darkly/)
+
+## Test
+
+1. Create new project
+   ```bash
+   dotnet new mstest -o review-generator-test
+   ```
+1. Add to Solution file
+   ```bash
+   dotnet sln add review-generator-test/review-generator-test.csproj
+   ```
+1. Add reference to api
+   ```bash
+   dotnet add review-generator-test/review-generator-test.csproj reference api/review-api.csproj
+   ```
 
 ## Docker
 
