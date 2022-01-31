@@ -3,6 +3,9 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<IRatingGenerator, RatingGenerator>();
+builder.Services.AddSingleton<IReviewGenerator, ReviewGenerator>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
@@ -31,11 +34,9 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-//app.UseHttpsRedirection();
-
-app.MapGet("/API/generate", () =>
+app.MapGet("/API/generate", (IReviewGenerator reviewGenerator) =>
 {
-    return "hello world";
+    return reviewGenerator.GenerateRandomReview();
 })
 .WithName("GetRandomReview");
 

@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  review-api:
+    image: ${DOCKER_REGISTRY-}reviewapi
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+
+  ui:
+    image: ${DOCKER_REGISTRY-}ui
+    build:
+      context: .
+      dockerfile: ui/Dockerfile
+
