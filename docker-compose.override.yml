@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  review-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - '5000:80'
+
+  ui:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DockerLocal
+    ports:
+      - '5001:80'
+    depends_on:
+      - review-api

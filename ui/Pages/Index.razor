@@ -1,6 +1,8 @@
 ﻿@page "/"
 @using System.Text.Json
+@using Microsoft.Extensions.Configuration
 @inject IHttpClientFactory ClientFactory
+@inject IConfiguration Configuration
 
 <PageTitle>Index</PageTitle>
 
@@ -11,7 +13,7 @@
 
 @if (GetReviewError)
 {
-    <p>Unable to Generate a Review. Please try again later</p>
+    <p>@Error</p>
 }
 else
 {
@@ -28,27 +30,41 @@ else
 @code {
     private IList<RandomReview> Reviews {get; set;} = new List<RandomReview>();
     private bool GetReviewError {get; set;}
+    private string Error {get; set;}
 
     private async Task GenerateReview()
     {
-        var request = new HttpRequestMessage(HttpMethod.Get,
-            "https://localhost:7052/api/generate");
+        var url = Configuration.
+            GetSection("ReviewGeneratorAPISettings").
+            GetSection("ApiUrl").Value;
+        var request = new HttpRequestMessage(HttpMethod.Get, 
+            $"{url}/api/generate");
         var client = ClientFactory.CreateClient();
-        var response = await client.SendAsync(request);
 
-        if (response.IsSuccessStatusCode)
+        try
         {
-            using var responseStream = await 
-                response.Content.ReadAsStreamAsync();
-            var review = await 
-                JsonSerializer.DeserializeAsync<RandomReview>(responseStream);
+            var response = await client.SendAsync(request);
 
-            if (review is not null)
-                Reviews.Add(review);
+            if (response.IsSuccessStatusCode)
+            {
+                using var responseStream = await 
+                    response.Content.ReadAsStreamAsync();
+                var review = await 
+                    JsonSerializer.DeserializeAsync<RandomReview>(responseStream);
+
+                if (review is not null)
+                    Reviews.Add(review);
+            }
+            else 
+            {
+                GetReviewError = true;
+                Error = "Unable to Generate a Review. Please try again later";
+            }
         }
-        else 
+        catch (Exception ex)
         {
             GetReviewError = true;
+            Error = ex.ToString();
         }
     }
 }
