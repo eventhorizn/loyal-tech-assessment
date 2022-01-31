@@ -3,6 +3,8 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<IReviewFileReader, ReviewFileReader>();
+builder.Services.AddSingleton<IMarkovChainTrainer, MarkovChainTrainer>();
 builder.Services.AddSingleton<IRatingGenerator, RatingGenerator>();
 builder.Services.AddSingleton<IReviewGenerator, ReviewGenerator>();
 
@@ -33,6 +35,10 @@ if (app.Environment.IsDevelopment())
         options.InjectStylesheet("/swagger-ui/swagger-dark.css");
     });
 }
+
+var markovChainTrainer = app.Services.GetService<IMarkovChainTrainer>();
+if (markovChainTrainer is not null)
+    markovChainTrainer.TrainMarkovChain();
 
 app.MapGet("/API/generate", (IReviewGenerator reviewGenerator) =>
 {

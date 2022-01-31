@@ -6,9 +6,9 @@
 			"type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "build",
-			"program": "${workspaceFolder}/api/bin/Debug/net6.0/review-api.dll",
+			"program": "${workspaceFolder}/bin/Debug/net6.0/review-api.dll",
 			"args": [],
-			"cwd": "${workspaceFolder}/api",
+			"cwd": "${workspaceFolder}/",
 			"stopAtEntry": false,
 			"serverReadyAction": {
 				"action": "openExternally",

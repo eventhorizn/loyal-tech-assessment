@@ -12,6 +12,8 @@ ASP.Net core app to automatically generate Amazon product reviews
    - docker-compose
    - docker manually
    - dotnet watch run manually
+1. When running the api, I pulled the Markov Chain Depth into an app setting
+   - I have it at 3, but it still consumes a lot of memory
 
 ## Docker Compose (Preferred Way)
 
@@ -143,6 +145,19 @@ ASP.Net core app to automatically generate Amazon product reviews
 1. Swagger [Customization](https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-6.0&tabs=visual-studio#customize-and-extend)
    - Added [dark mode](https://dev.to/amoenus/turn-swagger-theme-to-the-dark-mode-4l5f)
    - Remove `app.UseStaticFiles();` from the `Program.cs` file to reomve the custom styling
+
+### Reading .gz File
+
+1. Using [SharpZipLib](https://www.nuget.org/packages/SharpZipLib/) to read the file
+   ```bash
+   dotnet add package SharpZipLib --version 1.3.3
+   ```
+   - Very fast reading of a data set
+1. Using [Markov](https://www.nuget.org/packages/Markov/2.0.1-ci0025) to train my chain
+   ```bash
+   dotnet add package Markov --version 2.0.1-ci0025
+   ```
+   - Depth of 4 is max my computer could handle (16 gb memory)
 
 ## Blazor Front End
 
