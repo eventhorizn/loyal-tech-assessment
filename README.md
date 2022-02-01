@@ -117,8 +117,10 @@ ASP.Net core app to automatically generate Amazon product reviews
 ## Extra Credit
 
 1. Unit tests
+   - DONE
 1. User-friendly front-end
    - Blazor
+   - DONE
 1. Host app on azure
    - [Azure Trial](https://azure.microsoft.com/en-us/free/)
    - DONE

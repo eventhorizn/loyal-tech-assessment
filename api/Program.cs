@@ -43,7 +43,15 @@ if (markovChainTrainer is not null)
 
 app.MapGet("/API/generate", (IReviewGenerator reviewGenerator) =>
 {
-    return reviewGenerator.GenerateRandomReview();
+    try
+    {
+        var review = reviewGenerator.GenerateRandomReview();
+        return Results.Ok(review);
+    }
+    catch
+    {
+        return Results.NotFound();
+    }
 })
 .WithName("GetRandomReview");
 
