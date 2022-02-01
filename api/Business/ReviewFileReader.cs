@@ -1,9 +1,12 @@
 using System.Text.Json;
 using ICSharpCode.SharpZipLib.GZip;
+using review_api.Models;
+
+namespace review_api.Business;
 
 public class ReviewFileReader : IReviewFileReader
 {
-    private string _filePath = "";
+    private readonly string _filePath = "";
 
     public ReviewFileReader()
     {
@@ -16,8 +19,8 @@ public class ReviewFileReader : IReviewFileReader
 
         using (Stream fs = 
             new FileStream(_filePath, FileMode.Open, FileAccess.Read))
-        using (GZipInputStream gzis = new GZipInputStream(fs))
-        using (StreamReader sr = new StreamReader(gzis))
+        using (GZipInputStream gzis = new(fs))
+        using (StreamReader sr = new(gzis))
         {
             while (sr.Peek() > 0)
             {

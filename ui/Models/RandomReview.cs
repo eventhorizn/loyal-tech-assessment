@@ -2,6 +2,8 @@
 // Since this model is shared b/t api and ui
 using System.Text.Json.Serialization;
 
+namespace ui.Models;
+
 public record RandomReview
 {
     [JsonPropertyName("reviewText")]

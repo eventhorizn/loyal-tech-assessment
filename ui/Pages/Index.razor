@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using System.Text.Json
 @using Microsoft.Extensions.Configuration
+@using ui.Models
 @inject IHttpClientFactory ClientFactory
 @inject IConfiguration Configuration
 
@@ -30,7 +31,7 @@ else
 @code {
     private IList<RandomReview> Reviews {get; set;} = new List<RandomReview>();
     private bool GetReviewError {get; set;}
-    private string Error {get; set;}
+    private string Error { get; set; } = "";
 
     private async Task GenerateReview()
     {

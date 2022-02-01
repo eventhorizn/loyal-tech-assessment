@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using review_api.Business;
 
 namespace review_generator_test;
 
@@ -32,6 +33,8 @@ public class RatingGeneratorTest
     private List<int> GetRatingList(int numberRatings)
     {
         var reviews = new List<int>();
+
+        if (_ratingGenerator is null) return reviews;
 
         for (var i = 0; i <= numberRatings; i++)
         {
