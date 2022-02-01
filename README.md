@@ -12,8 +12,9 @@ ASP.Net core app to automatically generate Amazon product reviews
    - docker-compose
    - docker manually
    - dotnet watch run manually
-1. When running the api, I pulled the Markov Chain Depth into an app setting
-   - I have it at 3, but it still consumes a lot of memory
+1. When running the api, I pulled the Markov Chain Depth and rows to train on into app settings
+   - Limit memory usage
+   - I'm guessing the results get better as these numbers go up (though depth doesn't)
 
 ## Docker Compose (Preferred Way)
 

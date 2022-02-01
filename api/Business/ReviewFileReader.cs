@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text.Json;
 using ICSharpCode.SharpZipLib.GZip;
 using review_api.Models;
@@ -10,7 +11,8 @@ public class ReviewFileReader : IReviewFileReader
 
     public ReviewFileReader()
     {
-        _filePath = Environment.CurrentDirectory + "\\Data\\reviews_Tools_and_Home_Improvement_5.json.gz";
+        _filePath = System.IO.Path.GetDirectoryName(
+            Assembly.GetEntryAssembly()?.Location) + "\\Data\\reviews_Tools_and_Home_Improvement_5.json.gz";
     }
 
     public IList<ReviewData> ReadFile()
