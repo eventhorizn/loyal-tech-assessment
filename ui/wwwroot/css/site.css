@@ -79,7 +79,7 @@ a,
 
 .review-container {
 	margin-top: 1rem;
-	height: 500px;
+	height: 800px;
 	overflow-y: scroll;
 }
 
@@ -87,4 +87,25 @@ li {
 	background-color: rgb(24, 23, 23) !important;
 	color: rgb(224, 216, 216) !important;
 	border-color: rgb(224, 216, 216) !important;
+}
+
+.star {
+	color: yellow;
+}
+
+.clear-review-button {
+	margin-left: 10px;
+}
+
+.delete-button-parent {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	text-align: center;
+}
+
+.delete-button {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }

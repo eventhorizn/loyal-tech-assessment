@@ -12,6 +12,11 @@
     Generate Review
 </button>
 
+<button type="button" class="btn btn-danger clear-review-button" 
+        onclick="@(() => ClearReviews())">
+    Clear Reviews
+</button>
+
 @if (GetReviewError)
 {
     <p>@Error</p>
@@ -22,7 +27,22 @@ else
         @foreach (var review in Reviews)
         {
             <li class="list-group-item">
-                @review.ReviewText : @review.Rating
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <Rating RatingValue=review.Rating />
+                        <div class="col-lg-10">
+                            <p>@review.ReviewText</p>
+                        </div>
+                        <div class="col-lg delete-button-parent">
+                            <button type="button" 
+                                    class="btn btn-danger delete-button"
+                                    onclick="@(() => DeleteRow(review))">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </li>   
         }
     </ul>
@@ -67,5 +87,17 @@ else
             GetReviewError = true;
             Error = ex.ToString();
         }
+    }
+
+    private void ClearReviews()
+    {
+        Reviews.Clear();
+        StateHasChanged();
+    }
+
+    private void DeleteRow(RandomReview review)
+    {
+        Reviews.Remove(review);
+        StateHasChanged();
     }
 }
