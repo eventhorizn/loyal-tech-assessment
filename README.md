@@ -15,6 +15,7 @@ ASP.Net core app to automatically generate Amazon product reviews
 1. When running the api, I pulled the Markov Chain Depth and rows to train on into app settings
    - Limit memory usage
    - I'm guessing the results get better as these numbers go up (though depth doesn't)
+   - Can be tweaked (and project rebuilt)
 
 ## Docker Compose (Preferred Way)
 
@@ -23,6 +24,10 @@ ASP.Net core app to automatically generate Amazon product reviews
    docker-compose up
    ```
 1. Navigate to: http://localhost:5001/
+1. To refresh
+   ```bash
+   docker-compose build
+   ```
 
 ## API Docker Local
 
@@ -99,6 +104,7 @@ ASP.Net core app to automatically generate Amazon product reviews
      - DONE
 1. Ingest/train data in program startup
    - Download one of the 5-core subsets from: https://nijianmo.github.io/amazon/index.html
+   - DONE
 1. Create private github repo w/ solution
    - Add `badampowell` as collaborator
    - DONE

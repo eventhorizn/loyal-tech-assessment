@@ -7,6 +7,7 @@ WORKDIR /src
 COPY ["review-api.csproj", "./"]
 RUN dotnet restore "./review-api.csproj"
 COPY . .
+# COPY ./Data/reviews_Tools_and_Home_Improvement_5.json.gz /app/Data/reviews_Tools_and_Home_Improvement_5.json.gz
 WORKDIR "/src/."
 RUN dotnet build "review-api.csproj" -c Release -o /app/build
 

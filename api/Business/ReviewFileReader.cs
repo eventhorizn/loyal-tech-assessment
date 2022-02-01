@@ -12,7 +12,7 @@ public class ReviewFileReader : IReviewFileReader
     public ReviewFileReader()
     {
         _filePath = System.IO.Path.GetDirectoryName(
-            Assembly.GetEntryAssembly()?.Location) + "\\Data\\reviews_Tools_and_Home_Improvement_5.json.gz";
+            Assembly.GetEntryAssembly()?.Location) + "/Data/reviews_Tools_and_Home_Improvement_5.json.gz";
     }
 
     public IList<ReviewData> ReadFile()
