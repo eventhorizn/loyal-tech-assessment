@@ -16,6 +16,11 @@ ASP.Net core app to automatically generate Amazon product reviews
    - Limit memory usage
    - I'm guessing the results get better as these numbers go up (though depth doesn't)
    - Can be tweaked (and project rebuilt)
+1. Run unit tests
+   - From root run
+   ```bash
+   dotnet test loyal-tech-assessment.sln
+   ```
 
 ## Docker Compose (Preferred Way)
 
