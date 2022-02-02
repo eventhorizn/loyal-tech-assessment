@@ -1,6 +1,12 @@
-# Loyal Tech Assessment
+# Gary Hake Loyal Tech Assessment
 
 ASP.Net core app to automatically generate Amazon product reviews
+
+1. Uses a minimal api
+1. Blazor front end
+1. Markov Chain to generate random reviews
+1. Azure AI Sentiment Analysis
+1. Dockerized and hosted on Azure
 
 # Build and Run Instructions
 
@@ -41,6 +47,10 @@ ASP.Net core app to automatically generate Amazon product reviews
 1. To refresh
    ```bash
    docker-compose build
+   ```
+1. To delete
+   ```bash
+   docker-compose down
    ```
 
 ## API Docker Local
@@ -124,6 +134,7 @@ ASP.Net core app to automatically generate Amazon product reviews
    - DONE
 1. Replace randomized start rating w/ one generated on the fly
    - Using sentiment analysis
+   - DONE
 
 # Setup
 
@@ -318,3 +329,9 @@ Using the following walkthrough: [Link](https://code.visualstudio.com/docs/conta
    - Make updates locally
    - Push updates to registry
    - Restart app (which will pull most recent image)
+
+# TO-DO
+
+1. Pipeline
+   - I'm very familiar and comfortable with Azure Pipelines
+   - Less so with GitHub Actions
