@@ -9,6 +9,7 @@ ASP.Net core app to automatically generate Amazon product reviews
    git clone https://github.com/eventhorizn/loyal-tech-assessment.git
    ```
 1. I'm overdoing it on the options below
+   - Deployed apps
    - docker-compose
    - docker manually
    - dotnet watch run manually
@@ -21,6 +22,14 @@ ASP.Net core app to automatically generate Amazon product reviews
    ```bash
    dotnet test loyal-tech-assessment.sln
    ```
+
+## Deployed Applications
+
+1. WebApi deployed to Azure App Service (Docker, with Azure Container Registry)
+   - [Link](https://ghake-docker-review-api.azurewebsites.net/swagger/index.html)
+   - https://ghake-docker-review-api.azurewebsites.net/api/generate
+1. Blazor UI deployed to Azure App Service (Docker, with Azure Contiainer Registry)
+   - [Link](https://ghake-docker-review-ui.azurewebsites.net/)
 
 ## Docker Compose (Preferred Way)
 
@@ -81,20 +90,6 @@ ASP.Net core app to automatically generate Amazon product reviews
    dotnet watch run
    ```
 1. Make sure all images from above are not running
-
-# Deployed Applications
-
-1. WebApi deployed to Azure App Service (no Docker)
-   - [Link](https://ghake-review-api.azurewebsites.net/swagger/index.html)
-   - https://ghake-review-api.azurewebsites.net/api/generate
-1. WebApi deployed to Azure App Service (Docker, with Azure Container Registry)
-   - [Link](https://ghake-docker-review-api.azurewebsites.net/swagger/index.html)
-   - It's impossible to prove just with a link, so I can walk through the process
-   - https://ghake-docker-review-api.azurewebsites.net/api/generate
-1. Blazor UI deployed to Azure App Service (no Docker)
-   - [Link](https://ghake-review-ui.azurewebsites.net/)
-1. Blazor UI deployed to Azure App Service (Docker, with Azure Contiainer Registry)
-   - [Link](https://ghake-docker-review-ui.azurewebsites.net/)
 
 # Deliverables
 
@@ -167,11 +162,35 @@ ASP.Net core app to automatically generate Amazon product reviews
    dotnet add package SharpZipLib --version 1.3.3
    ```
    - Very fast reading of a data set
+
+### Markov Chain Training
+
 1. Using [Markov](https://www.nuget.org/packages/Markov/2.0.1-ci0025) to train my chain
    ```bash
    dotnet add package Markov --version 2.0.1-ci0025
    ```
    - Depth of 4 is max my computer could handle (16 gb memory)
+1. I added configuration settings to control the amount of data the api uses to train the chain
+   - 50k rows and depth of 2
+
+### Sentiment Analysis
+
+1. Since I'm running on Azure anywas, I'm using Azure AI Text Analytics
+   - [Getting Started Link](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/sentiment-opinion-mining/quickstart?pivots=programming-language-csharp)
+   ```bash
+   dotnet add package Azure.AI.TextAnalytics --version 5.1.1
+   ```
+1. Storing the key in [Azure Key Value](https://docs.microsoft.com/en-us/azure/key-vault/secrets/quick-create-cli)
+   - Access key in app: [Link](https://docs.microsoft.com/en-us/azure/key-vault/secrets/quick-create-net)
+   ```bash
+   dotnet add package Azure.Security.KeyVault.Secrets
+   ```
+   ```bash
+   dotnet add package Azure.Identity
+   ```
+1. Overall it's a simplistic implementation
+   - Just using the positive sentiment in the score
+   - Should use positive, neutral, and negative to weight a more realistic score
 
 ## Blazor Front End
 

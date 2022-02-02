@@ -15,6 +15,7 @@ public class ReviewGeneratorTest
     {
         var services = new ServiceCollection();
         
+        services.AddSingleton<IAzureAITextAnalytics, AzureAITextAnalytics>();
         services.AddSingleton<IReviewFileReader, ReviewFileReader>();
         services.AddSingleton<IRatingGenerator, RatingGenerator>();
         services.AddSingleton<IMarkovChainTrainer, MarkovChainTrainer>();

@@ -4,6 +4,7 @@ using review_api.Business;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<IAzureAITextAnalytics, AzureAITextAnalytics>();
 builder.Services.AddSingleton<IReviewFileReader, ReviewFileReader>();
 builder.Services.AddSingleton<IMarkovChainTrainer, MarkovChainTrainer>();
 builder.Services.AddSingleton<IRatingGenerator, RatingGenerator>();
