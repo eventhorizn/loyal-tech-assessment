@@ -4,6 +4,7 @@ using review_api.Business;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<IAzureAITextAnalytics, AzureAITextAnalytics>();
 builder.Services.AddSingleton<IReviewFileReader, ReviewFileReader>();
 builder.Services.AddSingleton<IMarkovChainTrainer, MarkovChainTrainer>();
 builder.Services.AddSingleton<IRatingGenerator, RatingGenerator>();
@@ -43,7 +44,15 @@ if (markovChainTrainer is not null)
 
 app.MapGet("/API/generate", (IReviewGenerator reviewGenerator) =>
 {
-    return reviewGenerator.GenerateRandomReview();
+    try
+    {
+        var review = reviewGenerator.GenerateRandomReview();
+        return Results.Ok(review);
+    }
+    catch
+    {
+        return Results.NotFound();
+    }
 })
 .WithName("GetRandomReview");
 
