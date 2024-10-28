@@ -25,8 +25,7 @@ public class MarkovChainTrainerTest
 
         _markovChainTrainer = serviceProvider.
             GetService<IMarkovChainTrainer>();
-        if (_markovChainTrainer is not null)
-            _markovChainTrainer.TrainMarkovChain();
+        _markovChainTrainer?.TrainMarkovChain();
     }
 
     [TestMethod]

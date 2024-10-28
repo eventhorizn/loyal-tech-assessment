@@ -2,14 +2,9 @@ using System.Security.Cryptography;
 
 namespace review_api.Business;
 
-public class RatingGenerator : IRatingGenerator
+public class RatingGenerator(IAzureAITextAnalytics azureAITextAnalytics) : IRatingGenerator
 {
-    private readonly IAzureAITextAnalytics _azureAITextAnalytics;
-
-    public RatingGenerator(IAzureAITextAnalytics azureAITextAnalytics)
-    {
-        _azureAITextAnalytics = azureAITextAnalytics;
-    }
+    private readonly IAzureAITextAnalytics _azureAITextAnalytics = azureAITextAnalytics;
 
     public int GenerateRandomRating()
     {

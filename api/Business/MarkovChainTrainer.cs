@@ -2,24 +2,17 @@ using Markov;
 
 namespace review_api.Business;
 
-public class MarkovChainTrainer : IMarkovChainTrainer
+public class MarkovChainTrainer(IReviewFileReader reviewFileReader, IConfiguration configuration) : IMarkovChainTrainer
 {
-    private readonly IReviewFileReader _reviewFileReader;
-    private readonly MarkovChain<string> _markovChain;
-    private readonly int _rowsToTrain;
-
-    public MarkovChainTrainer(IReviewFileReader reviewFileReader, IConfiguration configuration)
-    {
-        _reviewFileReader = reviewFileReader;
-        _markovChain = new MarkovChain<string>(
+    private readonly IReviewFileReader _reviewFileReader = reviewFileReader;
+    private readonly MarkovChain<string> _markovChain = new(
             int.Parse(configuration.
             GetSection("MarkovChainSettings").
             GetSection("Depth").Value));
-        _rowsToTrain = int.Parse(
+    private readonly int _rowsToTrain = int.Parse(
             configuration.
             GetSection("MarkovChainSettings").
             GetSection("Rows").Value);
-    }
 
     public void TrainMarkovChain()
     {

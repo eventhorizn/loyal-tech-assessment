@@ -26,8 +26,7 @@ public class ReviewGeneratorTest
 
         var markovChainTrainer = serviceProvider.
             GetService<IMarkovChainTrainer>();
-        if (markovChainTrainer is not null)
-            markovChainTrainer.TrainMarkovChain();
+        markovChainTrainer?.TrainMarkovChain();
 
         _reviewGenerator = serviceProvider.GetService<IReviewGenerator>();
     }

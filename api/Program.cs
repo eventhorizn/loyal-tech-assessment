@@ -39,8 +39,7 @@ if (app.Environment.IsDevelopment())
 }
 
 var markovChainTrainer = app.Services.GetService<IMarkovChainTrainer>();
-if (markovChainTrainer is not null)
-    markovChainTrainer.TrainMarkovChain();
+markovChainTrainer?.TrainMarkovChain();
 
 app.MapGet("/API/generate", (IReviewGenerator reviewGenerator) =>
 {
